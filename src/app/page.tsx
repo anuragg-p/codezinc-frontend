@@ -1,25 +1,32 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client"
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+
 
 export default function HomePage() {
+  
   const apps = [
-    { title: "Weather APP", description: "" },
-    { title: "", description: "" },
-    { title: "", description: "" },
-    { title: "", description: "" },
-    { title: "", description: "" },
+    { title: "App 0", description: "This is App 0", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "App 1", description: "This is App 1", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "App 2", description: "This is App 2", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "App 3", description: "This is App 3", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "App 4", description: "This is App 4", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "App 5", description: "This is App 5", route: "/apps/weather", content: "whatever!", footer: "footer message" },
   ];
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+    <main className="">
+      <h4 className="">Apps</h4>
       <div className="">
-        <Card className="w-[300px]">
+        {apps.map((item, index) => (
+          <Card className="" key={index}>
           <CardHeader>
-            <CardTitle>Card Title</CardTitle>
+            <CardTitle>{item.title}</CardTitle>
+            <CardDescription>{item.description}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <p>Card Content</p>
-          </CardContent>
+          <CardContent>{item.content}</CardContent>
+          <CardFooter>{item.footer}</CardFooter>
         </Card>
+        ))}
       </div>
     </main>
   );
