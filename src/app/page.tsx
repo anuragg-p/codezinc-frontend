@@ -1,16 +1,18 @@
 "use client"
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import styles from "../styles/home.module.css"
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const { push } = useRouter();
   
   const apps = [
-    { title: "App 0", description: "This is App 0", route: "/apps/weather", content: "whatever!", footer: "footer message" },
-    { title: "App 1", description: "This is App 1", route: "/apps/weather", content: "whatever!", footer: "footer message" },
-    { title: "App 2", description: "This is App 2", route: "/apps/weather", content: "whatever!", footer: "footer message" },
-    { title: "App 3", description: "This is App 3", route: "/apps/weather", content: "whatever!", footer: "footer message" },
-    { title: "App 4", description: "This is App 4", route: "/apps/weather", content: "whatever!", footer: "footer message" },
-    { title: "App 5", description: "This is App 5", route: "/apps/weather", content: "whatever!", footer: "footer message" },
+    { title: "Games App", description: "Games App", route: "/apps/games", content: "Content", footer: "footer message" },
+    { title: "Msnger App", description: "Messanger App", route: "/apps/messanger", content: "Content", footer: "footer message" },
+    { title: "Weather App", description: "Weather App", route: "/apps/weather", content: "Content", footer: "footer message" },
+    { title: "Games App", description: "Games App", route: "/apps/games", content: "Content", footer: "footer message" },
+    { title: "Msnger App", description: "Messanger App", route: "/apps/messanger", content: "Content", footer: "footer message" },
+    { title: "Weather App", description: "Weather App", route: "/apps/weather", content: "Content", footer: "footer message" },
   ];
 
   return (
@@ -18,7 +20,7 @@ export default function HomePage() {
       <h4 className={styles.card_box_heading}>Apps</h4>
       <div className={styles.cards_container}>
         {apps.map((item, index) => (
-          <Card className={styles.cards} key={index}>
+          <Card className={styles.cards} key={index} onClick={() => push(item.route)}>
           <CardHeader>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
