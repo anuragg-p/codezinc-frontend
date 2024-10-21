@@ -14,11 +14,11 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="">
-      <h4 className="">Apps</h4>
-      <div className="">
+    <main className={styles.main}>
+      <h4 className={styles.card_box_heading}>Apps</h4>
+      <div className={styles.cards_container}>
         {apps.map((item, index) => (
-          <Card className="" key={index}>
+          <Card className={styles.cards} key={index}>
           <CardHeader>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
