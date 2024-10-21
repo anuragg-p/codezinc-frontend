@@ -10,7 +10,7 @@
 }
 
 .card_box_heading{
-    color: red;
+    color: #FB773C;
     font-size: 20px;
     font-weight: 500;
     align-self: flex-start;
@@ -19,10 +19,11 @@
 
 .cards_container{
     display: grid;
+    background-image: linear-gradient(to top, #433878, #4E31AA);
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     padding: 1.5rem;
-    border: 2px solid #FFF8F3;
+    border: 2.5px solid #FFF8F3;
     border-radius: 3cap;
 }
 
@@ -33,4 +34,5 @@
     background-color: #405D72;
     border: 3px solid  #758694;
     border-radius: 3cap;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
