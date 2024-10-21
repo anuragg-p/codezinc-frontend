@@ -1,6 +1,6 @@
 "use client"
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-
+import styles from "../styles/home.module.css"
 
 export default function HomePage() {
   
