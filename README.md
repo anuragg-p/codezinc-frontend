@@ -1,29 +1,38 @@
-# Create T3 App
+# TASKS
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## SOURAV
+> Add a section on the root page which will show all of our available apps
+> 12.5%
 
-## What's next? How do I make an app with this?
+>> Nextjs Docs on Layout (APP ROUTER)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+# FRONTEND 
 
-## Learn More
+> Deployed on VERCEL
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- src
+    - app
+        - apps/
+            - /weather
+            - /youtube-comment-scraper
+            - /insta-profile-scraper
+        / (ROOT page)
+        <APPS/>
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+# BACKEND (DJANGO)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+> Deployed on EC2 with NGINX
+- apps 
+    - rapid-apis (app) {PORT: 8000} 
+        - (weather)
+           - model.py
+           - view.py
+    - pdf (app) {PORT: 8001}
+        - compress_pdf
+           - model.py
+           - view.py
+        - transform_pdf
+           - model.py
+           - view.py
