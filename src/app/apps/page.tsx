@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  const { push } = useRouter();
+  const router = useRouter();
 
   const apps = [
     {
@@ -24,10 +24,10 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="grid grid-cols-3 gap-8">
-        {apps.map((item) => (
+        {apps.map((item, index) => (
           <Card
             className="w-[300px] rounded-xl transition-all hover:scale-110 hover:cursor-pointer"
-            onClick={() => push(item.route)}
+            key={index} onClick={() => router.push(item.route)}
           >
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
