@@ -27,7 +27,8 @@ export default function HomePage() {
         {apps.map((item, index) => (
           <Card
             className="w-[300px] rounded-xl transition-all hover:scale-110 hover:cursor-pointer"
-            key={index} onClick={() => router.push(item.route)}
+            key={index}
+            onClick={() => router.push(item.route)}
           >
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
