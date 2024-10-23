@@ -14,7 +14,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body className="bg-foreground-default h-screen w-[100%] px-[12.5%]">
+        {children}
+      </body>
     </html>
   );
 }
