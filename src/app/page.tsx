@@ -2,7 +2,6 @@
 import {
   Card,
   CardHeader,
-  CardFooter,
   CardTitle,
   CardDescription,
   CardContent,
@@ -14,46 +13,40 @@ export default function HomePage() {
 
   const apps = [
     {
-      title: "Games App",
-      description: "Games App",
-      route: "/apps/games",
-      content: "Content",
-      footer: "footer message",
+      title: "Todo App",
+      description: "Todo App",
+      route: "/apps/simple-todo",
+      content: "A simple todo app",
     },
     {
       title: "Msnger App",
       description: "Messanger App",
       route: "/apps/messanger",
       content: "Content",
-      footer: "footer message",
     },
     {
       title: "Weather App",
       description: "Weather App",
       route: "/apps/weather",
       content: "Content",
-      footer: "footer message",
     },
     {
       title: "Games App",
       description: "Games App",
       route: "/apps/games",
       content: "Content",
-      footer: "footer message",
     },
     {
       title: "Msnger App",
       description: "Messanger App",
       route: "/apps/messanger",
       content: "Content",
-      footer: "footer message",
     },
     {
       title: "Weather App",
       description: "Weather App",
       route: "/apps/weather",
       content: "Content",
-      footer: "footer message",
     },
   ];
 
