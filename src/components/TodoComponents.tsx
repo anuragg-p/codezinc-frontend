@@ -1,6 +1,9 @@
 import React from "react";
 // Type of the component prop
-
+type TodoDashBoardProps = {
+  timeRange: string;
+  greet: string;
+};
 // Actual Component
 const TodoHeader = () => {
   return (
@@ -108,5 +111,19 @@ const DashBoardHeader = () => {
   );
 };
 
+const TodoDashBoard: React.FC<TodoDashBoardProps> = ({ timeRange, greet }) => {
+  return (
+    <article className="m-2 flex w-[300px] flex-grow rounded-xl bg-gray-800 p-4">
+      <header>{timeRange}</header>
+      <div className="-mt-52 self-center text-center">
+        <p className="text-gray-500">{greet}</p>
+        <button className="m-2 rounded-xl bg-gray-700 px-2 py-1">
+          Add Todo
+        </button>
+      </div>
+    </article>
+  );
+};
+
 //Component export
-export { TodoHeader, DashBoardHeader };
+export { TodoHeader, DashBoardHeader, TodoDashBoard };
