@@ -31,5 +31,82 @@ const TodoHeader = () => {
   );
 };
 
+const today = new Date();
+
+// Array of abbreviated day names
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+// Array of abbreviated month names
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const dayOfWeek = days[today.getDay()]; // Get the abbreviated day name
+const month = months[today.getMonth()]; // Get the abbreviated month name
+const day = today.getDate(); // Get the day of the month
+
+const DashBoardHeader = () => {
+  return (
+    <div className="flex flex-wrap items-center justify-around p-2">
+      <h1 className="text-4xl">
+        {dayOfWeek}, {month} {day}
+      </h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Search todos"
+          className="rounded-xl border-2 border-gray-400 bg-gray-900 px-2 py-1 text-white"
+        />
+        <select
+          name=""
+          id=""
+          className="mx-2 rounded-xl border-2 border-gray-400 bg-gray-900 px-2 py-1"
+        >
+          <option value="null">All todos</option>
+        </select>
+        {/* <a className="ml-2 text-gray-400">X</a> */}
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6 pt-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <button className="ml-7 mr-5 rounded-xl bg-green-700 px-2 py-1">
+          Add Todo
+        </button>
+        <button className="text-sm text-gray-400">Remove Done</button>
+      </div>
+    </div>
+  );
+};
+
 //Component export
-export { TodoHeader };
+export { TodoHeader, DashBoardHeader };
