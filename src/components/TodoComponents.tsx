@@ -4,6 +4,7 @@ type TodoDashBoardProps = {
   timeRange: string;
   greet: string;
 };
+
 // Actual Component
 const TodoHeader = () => {
   return (
@@ -125,5 +126,31 @@ const TodoDashBoard: React.FC<TodoDashBoardProps> = ({ timeRange, greet }) => {
   );
 };
 
+const TodoFooter = () => {
+  return (
+    <div className="sticky bottom-0 flex flex-wrap gap-2">
+      <p>Built by</p>
+      <a
+        href="https://www.google.com/"
+        className="text-blue-500 underline hover:no-underline"
+      >
+        Codezinc
+      </a>
+      <a
+        href="https://www.google.com/"
+        className="text-blue-500 underline hover:no-underline"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://www.google.com/"
+        className="text-blue-500 underline hover:no-underline"
+      >
+        Twitter
+      </a>
+    </div>
+  );
+};
+
 //Component export
-export { TodoHeader, DashBoardHeader, TodoDashBoard };
+export { TodoHeader, DashBoardHeader, TodoDashBoard, TodoFooter };

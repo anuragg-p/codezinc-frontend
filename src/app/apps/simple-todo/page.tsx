@@ -1,6 +1,7 @@
 import {
   DashBoardHeader,
   TodoDashBoard,
+  TodoFooter,
   TodoHeader,
 } from "@/components/TodoComponents";
 
@@ -33,6 +34,7 @@ export default function TodoPage() {
           />
         ))}
       </section>
+      <TodoFooter/>
     </main>
   );
 }
