@@ -1,4 +1,4 @@
-import { TodoEnum } from "@/components/Todo";
+import type { TodoEnum } from "@/components/Todo";
 
 export type TodoItemType = {
   type: TodoEnum;

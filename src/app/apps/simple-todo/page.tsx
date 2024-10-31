@@ -6,7 +6,7 @@ import {
   TodoHeader,
   TodoEnum,
 } from "@/components/Todo";
-import { TodoItemType } from "@/types/todo.types";
+import type { TodoItemType } from "@/types/todo.types";
 import { useCallback, useState } from "react";
 
 export default function TodoPage() {
