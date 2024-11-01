@@ -3,16 +3,17 @@ import React, { useState } from "react";
 
 import SettingIcon from "@/icons/SettingIcon";
 import CrossIcon from "@/icons/CrossIcon";
+import ChevronDownIcon from "@/icons/chevron-down";
 import { Button } from "./ui/button";
-import { TodoItemType } from "@/types/todo.types";
+import type { TodoItemType } from "@/types/todo.types";
 import { PlusIcon } from "lucide-react";
 import {
   Dialog,
-  DialogClose,
+  // DialogClose,
   DialogContent,
-  DialogDescription,
+  // DialogDescription,
   DialogTitle,
-  DialogTrigger,
+  // DialogTrigger,
 } from "@radix-ui/react-dialog";
 import { DialogFooter, DialogHeader } from "./ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -104,28 +105,98 @@ const DashboardHeader = () => {
 };
 
 const TodoItem: React.FC<TodoItemType> = ({ type, name, tags }) => {
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <div className="flex items-center gap-x-2 rounded-xl bg-gray-900 px-2 py-4">
-      <input type="checkbox" />
-      <div>{name}</div>
+      <input 
+      type="checkbox"
+      checked={isChecked}
+      onChange={() => setIsChecked(!isChecked)}
+      className="cursor-pointer"
+      />
+      <div className={isChecked? 'text-green-500': 'text-red-500'}>{name}</div>
     </div>
   );
 };
 
-const TodoPopup = ({}) => {
+// const TodoPopup = ({}) => {
+//   return (
+//     <Dialog>
+//       <DialogTrigger>Open</DialogTrigger>
+//       <DialogContent>
+//         <DialogHeader>
+//           <DialogTitle>Are you absolutely sure?</DialogTitle>
+//           <DialogDescription>
+//             This action cannot be undone. This will permanently delete your
+//             account and remove your data from our servers.
+//           </DialogDescription>
+//         </DialogHeader>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
+
+// Component for the three Radio Button
+const timeSpanOption = Object.values(TodoEnum);
+const RadioButtonThree: React.FC = () => {
+  const [timeSpan, setTimeSpan] = useState<TodoEnum>(TodoEnum.TODAY)
   return (
-    <Dialog>
-      <DialogTrigger>Open</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+    <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
+      {timeSpanOption.map((option) => (
+      <div 
+      key={option}
+      className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
+        ${timeSpan === option ? 'bg-green-500':''}`}
+      >
+        <input 
+        type="radio"
+        className="absolute inset-0 opacity-0 cursor-pointer"
+        value={option}
+        checked={timeSpan === option}
+        onChange={() => setTimeSpan(option as TodoEnum)}
+        />
+        <span className="font-medium">{option.replace('_', ' ').toLowerCase()}</span>
+      </div>
+      ))}
+    </div>
+  )
+}
+
+// Component for Tags box
+const TagInput = () => {
+  const [tagInput, setTagInput] = useState("")
+  const [isHovered, setIsHovered] = useState(false)
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  }
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  }
+
+  return (
+    <div 
+    className="flex items-center"
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+    >
+      <Input
+        id="add-tag"
+        type="text"
+        placeholder="Add your Tag here..."
+        defaultValue="rounded-xl"
+        className="block bg-gray-900 rounded-xl h-12 text-base border-2 border-gray-600 focus:outline-none"
+        value={tagInput}
+        onChange={(e) => setTagInput(e.target.value)}
+        />
+
+      {isHovered &&
+        <button 
+        className="absolute transform translate-x-[350px] cursor-pointer"
+        >
+          <ChevronDownIcon/>
+        </button>
+      }
+    </div>
   );
 };
 
@@ -136,6 +207,11 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [todoInput, setTodoInput] = useState("");
+  const objj = {
+    type: TodoEnum.EVENTUALLY,
+    name: "Start a side project",
+    tags: ["development", "hobby"],
+  }
 
   const getGreeting = () => {
     let greeting = "hello";
@@ -189,45 +265,60 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
-            className="absolute left-0 top-0 h-full w-full bg-black opacity-90"
+            className="absolute left-0 top-0 h-full w-full bg-gray-800 opacity-80"
             onClick={() => setShowPopup(false)}
           ></div>
 
-          <div className="relative left-[40%] top-[40%] h-screen w-[100%]">
+          <div className="relative left-[40%] top-[15%] h-screen w-[100%]">
             <Dialog open={showPopup} onOpenChange={setShowPopup}>
-              <DialogContent className="flex flex-col gap-y-4 bg-gray-900 p-8 sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Add a Todo</DialogTitle>
-                </DialogHeader>
-
-                <div className={"flex items-center space-x-2"}>
+              <DialogContent className="flex flex-col bg-gray-900 p-8 gap-10 sm:max-w-md text-xl rounded-[8px]">
+                <div className={"flex flex-col"}>
+                  <DialogHeader className="ml-2 mb-2">
+                    <DialogTitle>What do you want to do?</DialogTitle>
+                  </DialogHeader>
                   <Input
                     id="add-todo"
                     type="text"
+                    placeholder="Write your Task here..."
                     defaultValue="rounded-xl"
+                    className="bg-gray-900 rounded-xl h-16 border-2 text-base border-gray-600"
                     value={todoInput}
                     onChange={(e) => setTodoInput(e.target.value)}
                   />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="px-3"
-                    onClick={() => {
-                      //@ts-ignore
-                      addTodo(variant, todoInput);
-                      setShowPopup(false);
-                    }}
-                  >
-                    Add
-                  </Button>
+                </div>
+                <div className={"flex flex-col"}>
+                  <div className="ml-2 mb-2">
+                    When do you want to do this?
+                  </div>
+                  <RadioButtonThree/>
+                </div>
+                <div className={"mb-2"}>
+                  <div className="ml-2 mb-2">
+                    Tags <i className="text-sm text-gray-400">(optional, press Enter to add)</i>
+                  </div>
+                  <TagInput/>
                 </div>
                 <DialogFooter className="sm:justify-start">
                   <Button
+                    type="submit"
+                    size="sm"
+                    className="p-3 rounded-[8px] "
+                    onClick={() => {
+                      //@ts-expect-ignore
+                      // addTodo(variant, todoInput);
+                      addTodo(objj, todoInput); //-------------------------------------------------------------//
+                      setShowPopup(false);
+                    }}
+                  >
+                    save Todo
+                  </Button>
+                  <Button
                     type="button"
                     variant="secondary"
+                    className="rounded-[8px]"
                     onClick={() => setShowPopup(false)} // Close the dialog
                   >
-                    Close
+                    Cancel
                   </Button>
                 </DialogFooter>
               </DialogContent>
