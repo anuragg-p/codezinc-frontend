@@ -21,7 +21,8 @@ import { Input } from "@/components/ui/input";
 type TodoDashBoardProps = {
   variant: TodoEnum;
   todos: Array<TodoItemType>;
-  addTodo: (todoType: TodoItemType, name: string) => void;
+  // addTodo: (todoType: TodoItemType, name: string) => void;
+  addTodo: (todoType: TodoEnum, name: string) => void;
 };
 
 export enum TodoEnum {
@@ -104,7 +105,8 @@ const DashboardHeader = () => {
   );
 };
 
-const TodoItem: React.FC<TodoItemType> = ({ type, name, tags }) => {
+// const TodoItem: React.FC<TodoItemType> = ({ type, name, tags }) => {
+  const TodoItem: React.FC<TodoItemType> = ({ name }) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <div className="flex items-center gap-x-2 rounded-xl bg-gray-900 px-2 py-4">
@@ -114,7 +116,7 @@ const TodoItem: React.FC<TodoItemType> = ({ type, name, tags }) => {
       onChange={() => setIsChecked(!isChecked)}
       className="cursor-pointer"
       />
-      <div className={isChecked? 'text-green-500': 'text-red-500'}>{name}</div>
+      <div className={isChecked? 'text-gray-400 line-through': 'text-white'}>{name}</div>
     </div>
   );
 };
@@ -207,11 +209,11 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [todoInput, setTodoInput] = useState("");
-  const objj = {
-    type: TodoEnum.EVENTUALLY,
-    name: "Start a side project",
-    tags: ["development", "hobby"],
-  }
+  // const objj = {
+  //   type: TodoEnum.EVENTUALLY,
+  //   name: "Start a side project",
+  //   tags: ["development", "hobby"],
+  // }
 
   const getGreeting = () => {
     let greeting = "hello";
@@ -232,7 +234,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
   };
 
   return (
-    <div className="m-2 flex w-[300px] flex-grow flex-col rounded-xl border border-white bg-gray-800 p-4">
+    <div className="m-2 flex w-[300px] flex-grow flex-col rounded-xl bg-gray-800 p-4">
       <header className="flex items-center justify-between">
         <div>{variant}</div>
         <Button
@@ -306,7 +308,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                     onClick={() => {
                       //@ts-expect-ignore
                       // addTodo(variant, todoInput);
-                      addTodo(objj, todoInput); //-------------------------------------------------------------//
+                      addTodo(variant, todoInput); //-------------------------------------------------------------//
                       setShowPopup(false);
                     }}
                   >

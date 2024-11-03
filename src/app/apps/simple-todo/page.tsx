@@ -89,9 +89,9 @@ export default function TodoPage() {
   ];
 
   // What is useCallback?
-  const addTodo = useCallback((type: TodoItemType, name: string) => {
-    //@ts-ignore
+  const addTodo = useCallback((type: TodoEnum, name: string) => {
     return setTodos((prev) => [...prev, { type, name, tags: [] }]);
+  // }, [todos]);
   }, []);
 
   return (
