@@ -6,64 +6,12 @@ import {
   TodoHeader,
   TodoEnum,
 } from "@/components/Todo";
+import { __todos, __todosNew } from "@/TodoAppData/data";
 import type { TodoItemType } from "@/types/todo.types";
 import { useCallback, useState } from "react";
 
 export default function TodoPage() {
-  const __todos: TodoItemType[] = [
-    {
-      type: TodoEnum.TODAY,
-      name: "Finish project report",
-      tags: ["work", "urgent"],
-    },
-    {
-      type: TodoEnum.TODAY,
-      name: "Grocery shopping",
-      tags: ["personal", "errands"],
-    },
-    {
-      type: TodoEnum.TODAY,
-      name: "Workout at the gym",
-      tags: ["health", "fitness"],
-    },
-    {
-      type: TodoEnum.THIS_WEEK,
-      name: "Prepare presentation slides",
-      tags: ["work", "presentation"],
-    },
-    {
-      type: TodoEnum.THIS_WEEK,
-      name: "Visit the dentist",
-      tags: ["health", "appointment"],
-    },
-    {
-      type: TodoEnum.THIS_WEEK,
-      name: "Read the new book",
-      tags: ["personal", "reading"],
-    },
-    {
-      type: TodoEnum.EVENTUALLY,
-      name: "Learn TypeScript basics",
-      tags: ["learning", "development"],
-    },
-    {
-      type: TodoEnum.EVENTUALLY,
-      name: "Plan a vacation",
-      tags: ["personal", "travel"],
-    },
-    {
-      type: TodoEnum.EVENTUALLY,
-      name: "Organize the photo gallery",
-      tags: ["personal", "organization"],
-    },
-    {
-      type: TodoEnum.EVENTUALLY,
-      name: "Start a side project",
-      tags: ["development", "hobby"],
-    },
-  ];
-
-  const [todos, setTodos] = useState<Array<TodoItemType>>(__todos);
+  const [todos, setTodos] = useState<Array<TodoItemType>>(__todosNew);
 
   const todayTodos = todos.filter((item) => item.type === TodoEnum.TODAY);
   const thisWeekTodos = todos.filter(
