@@ -206,6 +206,13 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
     return greeting;
   };
 
+  // handle click to reset
+  const handleClick = () => {
+    setShowPopup(false);
+    setTimeSpan(variant);
+    setTodoInput("");
+  }
+
   return (
     <div className="m-2 flex w-[300px] flex-grow flex-col rounded-xl bg-gray-800 p-4">
       <header className="flex items-center justify-between">
@@ -213,7 +220,11 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
         <Button
           variant="default"
           className="rounded-xl bg-gray-900 hover:opacity-50"
-          onClick={() => setShowPopup(true)} // Set the popup visibility
+          onClick={() => {
+            setShowPopup(true);
+            setTodoInput("");
+            setTimeSpan(variant);
+          }} // Set the popup visibility reset the toggle and clear todo name
         >
           <PlusIcon />
         </Button>
@@ -223,7 +234,16 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
         {todos?.length === 0 ? (
           <div className="mt-52 self-center text-center">
             <p className="text-gray-400 text-lg mb-2">{getGreeting()}</p>
-            <Button className="rounded-xl">Add Todo</Button>
+            <Button
+            type="submit"
+            size="sm"
+            className="rounded-xl"
+            onClick={() => {
+              setShowPopup(true);
+              setTodoInput("");
+              setTimeSpan(variant);
+            }} // Set the popup visibility reset the toggle and clear todo name
+            >Add Todo</Button>
           </div>
         ) : (
           todos.map((todo, idx) => (
@@ -241,7 +261,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
             className="absolute left-0 top-0 h-full w-full bg-gray-800 opacity-80"
-            onClick={() => setShowPopup(false)}
+            onClick={handleClick}
           ></div>
 
           <div className="relative left-[40%] top-[15%] h-screen w-[100%]">
@@ -265,7 +285,6 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                   <div className="ml-2 mb-2">
                     When do you want to do this?
                   </div>
-                  {/* <RadioButtonThree/> */}
                   <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
                     {timeSpanOption.map((value) => (
                       <div
@@ -298,7 +317,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                     className="p-3 rounded-[8px] "
                     onClick={() => {
                       addTodo(timeSpan, todoInput);
-                      setShowPopup(false);
+                      handleClick();
                     }}
                   >
                     save Todo
@@ -307,7 +326,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                     type="button"
                     variant="secondary"
                     className="rounded-[8px]"
-                    onClick={() => setShowPopup(false)} // Close the dialog
+                    onClick={handleClick} // Close the dialog and clear todo name and reset the toggle 
                   >
                     Cancel
                   </Button>
