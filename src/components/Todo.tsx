@@ -1,12 +1,8 @@
 "use client";
 import React, { useState } from "react";
-
-import SettingIcon from "@/icons/SettingIcon";
-import CrossIcon from "@/icons/CrossIcon";
-import ChevronDownIcon from "@/icons/chevron-down";
 import { Button } from "./ui/button";
 import type { TodoItemType } from "@/types/todo.types";
-import { PlusIcon } from "lucide-react";
+import { ChevronDown, PlusIcon, SettingsIcon, XIcon } from "lucide-react";
 import {
   Dialog,
   // DialogClose,
@@ -36,7 +32,7 @@ const TodoHeader = () => {
   return (
     <div className="m-2 flex flex-wrap justify-end p-1">
       <button className="">
-        <SettingIcon />
+        <SettingsIcon />
       </button>
     </div>
   );
@@ -80,7 +76,7 @@ const DashboardHeader = () => {
       <h1 className="text-4xl">
         {dayOfWeek}, {month} {day}
       </h1>
-      <div>
+      <div className="flex justify-center">
         <input
           type="text"
           placeholder="Search todos"
@@ -93,9 +89,9 @@ const DashboardHeader = () => {
         >
           <option value="null">All todos</option>
         </select>
-        <button>
-          <CrossIcon />
-        </button>
+        <Button className="bg-gray-900">
+          <XIcon />
+        </Button>
         <button className="ml-7 mr-5 rounded-xl bg-green-700 px-2 py-1">
           Add Todo
         </button>
@@ -120,23 +116,6 @@ const DashboardHeader = () => {
     </div>
   );
 };
-
-// const TodoPopup = ({}) => {
-//   return (
-//     <Dialog>
-//       <DialogTrigger>Open</DialogTrigger>
-//       <DialogContent>
-//         <DialogHeader>
-//           <DialogTitle>Are you absolutely sure?</DialogTitle>
-//           <DialogDescription>
-//             This action cannot be undone. This will permanently delete your
-//             account and remove your data from our servers.
-//           </DialogDescription>
-//         </DialogHeader>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
 
 // Component for the three Radio Button
 const timeSpanOption = Object.values(TodoEnum);
@@ -195,7 +174,7 @@ const TagInput = () => {
         <button 
         className="absolute transform translate-x-[350px] cursor-pointer"
         >
-          <ChevronDownIcon/>
+          <ChevronDown/>
         </button>
       }
     </div>
@@ -248,8 +227,8 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 
       <div className="mt-6 flex flex-col gap-y-4">
         {todos?.length === 0 ? (
-          <div className="-mt-52 self-center text-center">
-            <p className="text-gray-500">{getGreeting()}</p>
+          <div className="mt-52 self-center text-center">
+            <p className="text-gray-400 text-lg mb-2">{getGreeting()}</p>
             <Button className="rounded-xl">Add Todo</Button>
           </div>
         ) : (
