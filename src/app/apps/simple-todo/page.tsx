@@ -6,7 +6,7 @@ import {
   TodoHeader,
   TodoEnum,
 } from "@/components/Todo";
-import { __todos, __todosNew } from "@/TodoAppData/data";
+import { __todosNew } from "@/TodoAppData/data";
 import type { TodoItemType } from "@/types/todo.types";
 import { useCallback, useState } from "react";
 

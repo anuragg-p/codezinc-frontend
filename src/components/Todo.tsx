@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import type { TodoItemType } from "@/types/todo.types";
-import { ChevronDown, PlusIcon, SettingsIcon, XIcon } from "lucide-react";
+import { ChevronDown, PlusIcon, SettingsIcon, Trash2, XIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -86,7 +86,7 @@ const DashboardHeader = () => {
         >
           <option value="null">All todos</option>
         </select>
-        <Button className="bg-gray-900">
+        <Button className="rounded-xl bg-gray-900 hover:opacity-50 hover:bg-green-700">
           <XIcon />
         </Button>
         <button className="ml-7 mr-5 rounded-xl bg-green-700 px-2 py-1">
@@ -102,43 +102,22 @@ const DashboardHeader = () => {
   const TodoItem: React.FC<TodoItemType> = ({ name }) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="flex items-center gap-x-2 rounded-xl bg-gray-900 px-2 py-4">
-      <input 
-      type="checkbox"
-      checked={isChecked}
-      onChange={() => setIsChecked(!isChecked)}
-      className="cursor-pointer"
-      />
-      <div className={isChecked? 'text-gray-400 line-through': 'text-white'}>{name}</div>
-    </div>
+      <div className="flex justify-between items-center rounded-xl bg-gray-900 px-2 py-2">
+        <div className="inline-flex mx-2 space-x-2">
+          <input 
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => setIsChecked(!isChecked)}
+          className="cursor-pointer"
+          />
+          <div className={isChecked? 'text-gray-400 line-through': 'text-white'}>{name}</div>
+        </div>
+        <button className="p-2 hover:opacity-70">
+          <Trash2 size={18}/>
+        </button>
+      </div>
   );
 };
-
-// Component for the three Radio Button
-// const timeSpanOption = Object.values(TodoEnum);
-// const RadioButtonThree: React.FC = () => {
-//   const [timeSpan, setTimeSpan] = useState<TodoEnum>(TodoEnum.TODAY)
-//   return (
-//     <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
-//       {timeSpanOption.map((option) => (
-//       <div 
-//       key={option}
-//       className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
-//         ${timeSpan === option ? 'bg-green-500':''}`}
-//       >
-//         <input 
-//         type="radio"
-//         className="absolute inset-0 opacity-0 cursor-pointer"
-//         value={option}
-//         checked={timeSpan === option}
-//         onChange={() => setTimeSpan(option as TodoEnum)}
-//         />
-//         <span className="font-medium">{option.replace('_', ' ').toLowerCase()}</span>
-//       </div>
-//       ))}
-//     </div>
-//   )
-// }
 
 // Component for Tags box
 const TagInput = () => {
@@ -208,9 +187,9 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 
   // handle click to reset
   const handleClick = () => {
-    setShowPopup(false);
     setTimeSpan(variant);
     setTodoInput("");
+    setShowPopup(false);
   }
 
   return (
@@ -290,7 +269,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                       <div
                         key={value}
                         className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
-                      ${timeSpan === value ? 'bg-green-700 text-black' : ''}`}
+                      ${timeSpan === value ? 'text-green-300 border-2 border-gray-400' : 'text-green-700 border-2 border-transparent'}`}
                       >
                         <input
                           type="radio"
