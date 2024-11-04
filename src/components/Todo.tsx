@@ -5,11 +5,8 @@ import type { TodoItemType } from "@/types/todo.types";
 import { ChevronDown, PlusIcon, SettingsIcon, XIcon } from "lucide-react";
 import {
   Dialog,
-  // DialogClose,
   DialogContent,
-  // DialogDescription,
   DialogTitle,
-  // DialogTrigger,
 } from "@radix-ui/react-dialog";
 import { DialogFooter, DialogHeader } from "./ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -118,30 +115,30 @@ const DashboardHeader = () => {
 };
 
 // Component for the three Radio Button
-const timeSpanOption = Object.values(TodoEnum);
-const RadioButtonThree: React.FC = () => {
-  const [timeSpan, setTimeSpan] = useState<TodoEnum>(TodoEnum.TODAY)
-  return (
-    <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
-      {timeSpanOption.map((option) => (
-      <div 
-      key={option}
-      className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
-        ${timeSpan === option ? 'bg-green-500':''}`}
-      >
-        <input 
-        type="radio"
-        className="absolute inset-0 opacity-0 cursor-pointer"
-        value={option}
-        checked={timeSpan === option}
-        onChange={() => setTimeSpan(option as TodoEnum)}
-        />
-        <span className="font-medium">{option.replace('_', ' ').toLowerCase()}</span>
-      </div>
-      ))}
-    </div>
-  )
-}
+// const timeSpanOption = Object.values(TodoEnum);
+// const RadioButtonThree: React.FC = () => {
+//   const [timeSpan, setTimeSpan] = useState<TodoEnum>(TodoEnum.TODAY)
+//   return (
+//     <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
+//       {timeSpanOption.map((option) => (
+//       <div 
+//       key={option}
+//       className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
+//         ${timeSpan === option ? 'bg-green-500':''}`}
+//       >
+//         <input 
+//         type="radio"
+//         className="absolute inset-0 opacity-0 cursor-pointer"
+//         value={option}
+//         checked={timeSpan === option}
+//         onChange={() => setTimeSpan(option as TodoEnum)}
+//         />
+//         <span className="font-medium">{option.replace('_', ' ').toLowerCase()}</span>
+//       </div>
+//       ))}
+//     </div>
+//   )
+// }
 
 // Component for Tags box
 const TagInput = () => {
@@ -188,11 +185,8 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [todoInput, setTodoInput] = useState("");
-  // const objj = {
-  //   type: TodoEnum.EVENTUALLY,
-  //   name: "Start a side project",
-  //   tags: ["development", "hobby"],
-  // }
+  const [timeSpan, setTimeSpan] = useState(variant);
+  const timeSpanOption = Object.values(TodoEnum);
 
   const getGreeting = () => {
     let greeting = "hello";
@@ -271,7 +265,25 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                   <div className="ml-2 mb-2">
                     When do you want to do this?
                   </div>
-                  <RadioButtonThree/>
+                  {/* <RadioButtonThree/> */}
+                  <div className="flex h-12 justify-around border-2 border-gray-600 rounded-xl">
+                    {timeSpanOption.map((value) => (
+                      <div
+                        key={value}
+                        className={`relative flex flex-grow rounded-xl items-center justify-center cursor-pointer text-center transition-colors duration-200 
+                      ${timeSpan === value ? 'bg-green-700 text-black' : ''}`}
+                      >
+                        <input
+                          type="radio"
+                          className="absolute inset-0 opacity-0 cursor-pointer"
+                          value={value}
+                          checked={timeSpan === value}
+                          onChange={() => setTimeSpan(value)}
+                        />
+                        <span className="font-medium">{value}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className={"mb-2"}>
                   <div className="ml-2 mb-2">
@@ -285,9 +297,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                     size="sm"
                     className="p-3 rounded-[8px] "
                     onClick={() => {
-                      //@ts-expect-ignore
-                      // addTodo(variant, todoInput);
-                      addTodo(variant, todoInput); //-------------------------------------------------------------//
+                      addTodo(timeSpan, todoInput);
                       setShowPopup(false);
                     }}
                   >
@@ -313,7 +323,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
 
 const TodoFooter = () => {
   return (
-    <div className="sticky bottom-0 flex flex-wrap gap-2">
+    <div className="sticky bottom-0 flex flex-wrap gap-4 mx-4 mb-2">
       <p>Built by</p>
       <a
         href="https://www.google.com/"
