@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input";
 type TodoDashBoardProps = {
   variant: TodoEnum;
   todos: Array<TodoItemType>;
-  // addTodo: (todoType: TodoItemType, name: string) => void;
   addTodo: (todoType: TodoEnum, name: string) => void;
 };
 
@@ -24,7 +23,7 @@ export enum TodoEnum {
   EVENTUALLY = "Eventually",
 }
 
-// Actual Component
+// Header Component
 const TodoHeader = () => {
   return (
     <div className="m-2 flex flex-wrap justify-end p-1">
@@ -35,43 +34,18 @@ const TodoHeader = () => {
   );
 };
 
-const today = new Date();
-
-// Array of abbreviated day names
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-// Array of abbreviated month names
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const dayOfWeek = days[today.getDay()];
-const month = months[today.getMonth()];
-const day = today.getDate();
-
 const DashboardHeader = () => {
+  const currentDate = new Date();
+  
+  const Dateformat = currentDate.toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  });
   return (
     <div className="flex flex-wrap items-center justify-between px-10 py-2">
       <h1 className="text-4xl">
-        {dayOfWeek}, {month} {day}
+        {Dateformat}
       </h1>
       <div className="flex justify-center">
         <input
@@ -98,7 +72,6 @@ const DashboardHeader = () => {
   );
 };
 
-// const TodoItem: React.FC<TodoItemType> = ({ type, name, tags }) => {
   const TodoItem: React.FC<TodoItemType> = ({ name }) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
@@ -203,7 +176,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
             setShowPopup(true);
             setTodoInput("");
             setTimeSpan(variant);
-          }} // Set the popup visibility reset the toggle and clear todo name
+          }}
         >
           <PlusIcon />
         </Button>
@@ -221,7 +194,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
               setShowPopup(true);
               setTodoInput("");
               setTimeSpan(variant);
-            }} // Set the popup visibility reset the toggle and clear todo name
+            }}
             >Add Todo</Button>
           </div>
         ) : (
@@ -305,7 +278,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
                     type="button"
                     variant="secondary"
                     className="rounded-[8px]"
-                    onClick={handleClick} // Close the dialog and clear todo name and reset the toggle 
+                    onClick={handleClick}
                   >
                     Cancel
                   </Button>
