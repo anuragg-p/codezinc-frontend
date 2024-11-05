@@ -5,3 +5,10 @@ export type TodoItemType = {
   name: string;
   tags?: Array<string>;
 };
+
+// making an initial type for imported json data
+export type  Raw = {
+  type: string;
+  name: string;
+  tags?: Array<string>;
+}

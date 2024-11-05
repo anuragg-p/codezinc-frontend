@@ -4,13 +4,30 @@ import {
   TodoDashBoard,
   TodoEnum,
 } from "@/components/Todo";
-import { __todosNew } from "@/TodoAppData/data";
-import type { TodoItemType } from "@/types/todo.types";
+import tasksData from "@/data/todo-app-data.json";
+import type { Raw, TodoItemType } from "@/types/todo.types";
 import { useCallback, useState } from "react";
 import { TodoFooter } from "@/components/TodoFooter";
 
+
+// making a function to convert the json file Raw data to our required type data
+const convertToTodoItems = (data: Raw[]): TodoItemType[] => {
+  return data.map((task) => {
+    // Convert the type field to TodoEnum
+    const type = TodoEnum[task.type as keyof typeof TodoEnum];
+    return {
+      type,
+      name: task.name,
+      tags: task.tags
+    };
+  });
+}
+
+// To convert imported json file data to a typed Array<TodoItemType>
+const todoItems: TodoItemType[] = convertToTodoItems(tasksData);
+
 export default function TodoPage() {
-  const [todos, setTodos] = useState<Array<TodoItemType>>(__todosNew);
+  const [todos, setTodos] = useState<Array<TodoItemType>>(todoItems);
 
   const todayTodos = todos.filter((item) => item.type === TodoEnum.TODAY);
   const thisWeekTodos = todos.filter(
