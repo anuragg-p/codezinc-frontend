@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import type { TodoItemType } from "@/types/todo.types";
-import { ChevronDown, PlusIcon, SettingsIcon, Trash2, XIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
 } from "@radix-ui/react-dialog";
+import { TagInput } from "./TodoTagInput";
+import { TodoItem } from "./TodoItem";
 import { DialogFooter, DialogHeader } from "./ui/dialog";
 import { Input } from "@/components/ui/input";
 
@@ -22,113 +24,6 @@ export enum TodoEnum {
   THIS_WEEK = "This Week",
   EVENTUALLY = "Eventually",
 }
-
-// Header Component
-const TodoHeader = () => {
-  return (
-    <div className="m-2 flex flex-wrap justify-end p-1">
-      <button className="">
-        <SettingsIcon />
-      </button>
-    </div>
-  );
-};
-
-const DashboardHeader = () => {
-  const currentDate = new Date();
-  
-  const Dateformat = currentDate.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  });
-  return (
-    <div className="flex flex-wrap items-center justify-between px-10 py-2">
-      <h1 className="text-4xl">
-        {Dateformat}
-      </h1>
-      <div className="flex justify-center">
-        <input
-          type="text"
-          placeholder="Search todos"
-          className="rounded-xl border-2 border-gray-400 bg-gray-900 px-2 py-1 text-white"
-        />
-        <select
-          name=""
-          id=""
-          className="mx-2 rounded-xl border-2 border-gray-400 bg-gray-900 px-2 py-1"
-        >
-          <option value="null">All todos</option>
-        </select>
-        <Button className="rounded-xl bg-gray-900 hover:opacity-50 hover:bg-green-700">
-          <XIcon />
-        </Button>
-        <button className="ml-7 mr-5 rounded-xl bg-green-700 px-2 py-1">
-          Add Todo
-        </button>
-        <button className="text-sm text-gray-400">Remove Done</button>
-      </div>
-    </div>
-  );
-};
-
-  const TodoItem: React.FC<TodoItemType> = ({ name }) => {
-  const [isChecked, setIsChecked] = useState(false);
-  return (
-      <div className="flex justify-between items-center rounded-xl bg-gray-900 px-2 py-2">
-        <div className="inline-flex mx-2 space-x-2">
-          <input 
-          type="checkbox"
-          checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
-          className="cursor-pointer"
-          />
-          <div className={isChecked? 'text-gray-400 line-through': 'text-white'}>{name}</div>
-        </div>
-        <button className="p-2 hover:opacity-70">
-          <Trash2 size={18}/>
-        </button>
-      </div>
-  );
-};
-
-// Component for Tags box
-const TagInput = () => {
-  const [tagInput, setTagInput] = useState("")
-  const [isHovered, setIsHovered] = useState(false)
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  }
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  }
-
-  return (
-    <div 
-    className="flex items-center"
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
-    >
-      <Input
-        id="add-tag"
-        type="text"
-        placeholder="Add your Tag here..."
-        defaultValue="rounded-xl"
-        className="block bg-gray-900 rounded-xl h-12 text-base border-2 border-gray-600 focus:outline-none"
-        value={tagInput}
-        onChange={(e) => setTagInput(e.target.value)}
-        />
-
-      {isHovered &&
-        <button 
-        className="absolute transform translate-x-[350px] cursor-pointer"
-        >
-          <ChevronDown/>
-        </button>
-      }
-    </div>
-  );
-};
 
 const TodoSection: React.FC<TodoDashBoardProps> = ({
   variant,
@@ -292,36 +187,5 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
   );
 };
 
-const TodoFooter = () => {
-  return (
-    <div className="sticky bottom-0 flex flex-wrap gap-4 mx-4 mb-2">
-      <p>Built by</p>
-      <a
-        href="https://www.google.com/"
-        className="text-blue-500 underline hover:no-underline"
-      >
-        Codezinc
-      </a>
-      <a
-        href="https://www.google.com/"
-        className="text-blue-500 underline hover:no-underline"
-      >
-        GitHub
-      </a>
-      <a
-        href="https://www.google.com/"
-        className="text-blue-500 underline hover:no-underline"
-      >
-        Twitter
-      </a>
-    </div>
-  );
-};
-
 //Component export
-export {
-  TodoHeader,
-  DashboardHeader as DashBoardHeader,
-  TodoSection as TodoDashBoard,
-  TodoFooter,
-};
+export { TodoSection as TodoDashBoard };

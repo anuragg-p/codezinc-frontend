@@ -1,14 +1,13 @@
 "use client";
+import { DashBoardHeader } from "@/components/TodoHeader";
 import {
-  DashBoardHeader,
   TodoDashBoard,
-  TodoFooter,
-  TodoHeader,
   TodoEnum,
 } from "@/components/Todo";
 import { __todosNew } from "@/TodoAppData/data";
 import type { TodoItemType } from "@/types/todo.types";
 import { useCallback, useState } from "react";
+import { TodoFooter } from "@/components/TodoFooter";
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<Array<TodoItemType>>(__todosNew);
@@ -44,7 +43,6 @@ export default function TodoPage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-gray-900 px-4">
-      <TodoHeader />
       <DashBoardHeader />
       <section className="m-4 flex flex-grow flex-wrap gap-4 p-4">
         {sections.map((item, index) => (
