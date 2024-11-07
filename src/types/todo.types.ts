@@ -12,3 +12,15 @@ export type  Raw = {
   name: string;
   tags?: Array<string>;
 }
+
+export type PopupElementProps = {
+  showPopup: boolean;
+  setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  todoInput: string;
+  setTodoInput: React.Dispatch<React.SetStateAction<string>>;
+  timeSpan: TodoEnum;
+  setTimeSpan: React.Dispatch<React.SetStateAction<TodoEnum>>;
+  handleClick: () => void;
+  timeSpanOption: TodoEnum[];
+  addTodo: (todoType: TodoEnum, name: string) => void;
+};
