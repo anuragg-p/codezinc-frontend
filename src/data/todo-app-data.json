@@ -1,0 +1,98 @@
+[
+    {
+        "type": "TODAY",
+        "name": "Finish project report",
+        "tags": [
+            "work",
+            "urgent"
+        ]
+    },
+    {
+        "type": "THIS_WEEK",
+        "name": "Finish the old project report also",
+        "tags": [
+            "work",
+            "not so urgent"
+        ]
+    },
+    {
+        "type": "TODAY",
+        "name": "Grocery shopping",
+        "tags": [
+            "personal",
+            "errands"
+        ]
+    },
+    {
+        "type": "TODAY",
+        "name": "Workout at the gym",
+        "tags": [
+            "health",
+            "fitness"
+        ]
+    },
+    {
+        "type": "THIS_WEEK",
+        "name": "Prepare presentation slides",
+        "tags": [
+            "work",
+            "presentation"
+        ]
+    },
+    {
+        "type": "THIS_WEEK",
+        "name": "Visit the dentist",
+        "tags": [
+            "health",
+            "appointment"
+        ]
+    },
+    {
+        "type": "THIS_WEEK",
+        "name": "Read the new book",
+        "tags": [
+            "personal",
+            "reading"
+        ]
+    },
+    {
+        "type": "EVENTUALLY",
+        "name": "Learn TypeScript basics",
+        "tags": [
+            "learning",
+            "development"
+        ]
+    },
+    {
+        "type": "EVENTUALLY",
+        "name": "Plan a vacation",
+        "tags": [
+            "personal",
+            "travel"
+        ]
+    },
+    {
+        "type": "EVENTUALLY",
+        "name": "Organize the photo gallery",
+        "tags": [
+            "personal",
+            "organization"
+        ]
+    },
+    {
+        "type": "EVENTUALLY",
+        "name": "Start a side project",
+        "tags": [
+            "development",
+            "hobby"
+        ]
+    },
+    {
+        "type": "TODAY",
+        "name": "Start any new side project",
+        "tags": [
+            "development",
+            "knowledge"
+        ]
+    }
+]
