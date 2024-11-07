@@ -24,3 +24,21 @@ export type PopupElementProps = {
   timeSpanOption: TodoEnum[];
   addTodo: (todoType: TodoEnum, name: string) => void;
 };
+
+export type PopupTodoNameProps = {
+  todoInput: string;
+  setTodoInput: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export type PopupTodoRadioProps = {
+  setTimeSpan: React.Dispatch<React.SetStateAction<TodoEnum>>;
+  timeSpan: TodoEnum;
+  timeSpanOption: TodoEnum[];
+}
+
+export type PopupTodoFooterProps = {
+  todoInput: string;
+  timeSpan: TodoEnum;
+  addTodo: (todoType: TodoEnum, name: string) => void;
+  handleClick: () => void;
+}
