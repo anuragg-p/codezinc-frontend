@@ -5,8 +5,19 @@ import { Trash2 } from "lucide-react";
 
 const TodoItem: React.FC<TodoItemType> = ({ name }) => {
     const [isChecked, setIsChecked] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
     return (
-        <div className="flex justify-between items-center rounded-xl bg-gray-900 px-2 py-2">
+        <div 
+        className="flex justify-between items-center rounded-xl bg-gray-900 px-2 py-2"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        >
             <div className="inline-flex mx-2 space-x-2">
                 <input
                     type="checkbox"
@@ -16,9 +27,11 @@ const TodoItem: React.FC<TodoItemType> = ({ name }) => {
                 />
                 <div className={isChecked ? 'text-gray-400 line-through' : 'text-white'}>{name}</div>
             </div>
-            <button className="p-2 hover:opacity-70">
+            {isHovered && (
+            <button className="px-2 hover:opacity-70">
                 <Trash2 size={18} />
             </button>
+            )}
         </div>
     );
 };
