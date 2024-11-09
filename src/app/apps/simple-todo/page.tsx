@@ -58,6 +58,10 @@ export default function TodoPage() {
   // }, [todos]);
   }, []);
 
+  const removeTodo = useCallback(( name: string) => {
+    return setTodos((prev) => prev.filter(todo => todo.name !== name));
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col bg-gray-900 px-4">
       <DashBoardHeader />
@@ -68,6 +72,7 @@ export default function TodoPage() {
             variant={item.variant}
             todos={item.todos}
             addTodo={addTodo}
+            removeTodo={removeTodo}
           />
         ))}
       </section>

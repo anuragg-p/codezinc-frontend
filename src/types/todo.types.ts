@@ -6,6 +6,13 @@ export type TodoItemType = {
   tags?: Array<string>;
 };
 
+export type TodoItemType1 = {
+  type: TodoEnum;
+  name: string;
+  tags?: Array<string>;
+  removeTodo: (name: string) => void
+};
+
 // making an initial type for imported json data
 export type  Raw = {
   type: string;

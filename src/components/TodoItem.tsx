@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import type { TodoItemType } from "@/types/todo.types";
+import type { TodoItemType1 } from "@/types/todo.types";
 import { Trash2 } from "lucide-react";
 
-const TodoItem: React.FC<TodoItemType> = ({ name }) => {
+const TodoItem: React.FC<TodoItemType1> = ({ name , removeTodo }) => {
     const [isChecked, setIsChecked] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const handleMouseEnter = () => {
@@ -28,7 +28,10 @@ const TodoItem: React.FC<TodoItemType> = ({ name }) => {
                 <div className={isChecked ? 'text-gray-400 line-through' : 'text-white'}>{name}</div>
             </div>
             {isHovered && (
-            <button className="px-2 hover:opacity-70">
+            <button 
+            className="px-2 hover:opacity-70"
+            onClick={()=> removeTodo(name)}
+            >
                 <Trash2 size={18} />
             </button>
             )}

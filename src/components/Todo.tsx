@@ -10,6 +10,7 @@ type TodoDashBoardProps = {
   variant: TodoEnum;
   todos: Array<TodoItemType>;
   addTodo: (todoType: TodoEnum, name: string) => void;
+  removeTodo: (name: string) => void
 };
 
 export enum TodoEnum {
@@ -22,6 +23,7 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
   variant,
   todos,
   addTodo,
+  removeTodo
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [todoInput, setTodoInput] = useState("");
@@ -92,7 +94,9 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
               name={todo.name}
               type={todo.type}
               tags={todo.tags}
+              removeTodo ={removeTodo}
             />
+            
           ))
         )}
       </div>
