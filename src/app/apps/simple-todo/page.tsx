@@ -45,14 +45,21 @@ export default function TodoPage() {
     ];
 
     // What is useCallback?
-    const addTodo = useCallback((type: TodoEnum, name: string) => {
-        return setTodos((prev) => [...prev, { type, name, tags: [] }]);
+    const addTodo = useCallback((type: TodoEnum, name: string, checked: boolean) => {
+        return setTodos((prev) => [...prev, { type, name, checked, tags: [] }]);
         // }, [todos]);
     }, []);
 
-    const removeTodo = useCallback((name: string) => {
-        return setTodos((prev) => prev.filter((todo) => todo.name !== name));
+    const removeTodo = useCallback((name: string, type: TodoEnum) => {
+        return setTodos((prev) => prev.filter((todo) => (todo.name !== name || todo.type !== type)));
     }, []);
+
+    // change checked
+    const setChecked = useCallback((name: string, type: TodoEnum) => {
+        return setTodos(
+            (prev) => prev.map((todo)=> todo.name === name && todo.type === type ? { ...todo, checked: !todo.checked }: todo)
+        );
+    }, [setTodos]);
 
     return (
         <main className="flex min-h-screen flex-col bg-gray-900 px-4">
@@ -65,6 +72,7 @@ export default function TodoPage() {
                         todos={item.todos}
                         addTodo={addTodo}
                         removeTodo={removeTodo}
+                        setChecked={setChecked}
                     />
                 ))}
             </section>

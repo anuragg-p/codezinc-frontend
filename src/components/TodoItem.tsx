@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import type { TodoItemType1 } from "@/types/todo.types";
 import { Trash2 } from "lucide-react";
 
-const TodoItem: React.FC<TodoItemType1> = ({ name , removeTodo }) => {
-    const [isChecked, setIsChecked] = useState(false);
+const TodoItem: React.FC<TodoItemType1> = ({ name, type, removeTodo, checked, setChecked }) => {
+
     const [isHovered, setIsHovered] = useState(false);
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -21,16 +21,16 @@ const TodoItem: React.FC<TodoItemType1> = ({ name , removeTodo }) => {
             <div className="inline-flex mx-2 space-x-2">
                 <input
                     type="checkbox"
-                    checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
+                    checked={checked}
+                    onChange={() => setChecked(name, type)}
                     className="cursor-pointer"
                 />
-                <div className={isChecked ? 'text-gray-400 line-through' : 'text-white'}>{name}</div>
+                <div className={checked ? 'text-gray-400 line-through' : 'text-white'}>{name}</div>
             </div>
             {isHovered && (
             <button 
             className="px-2 hover:opacity-70"
-            onClick={()=> removeTodo(name)}
+            onClick={()=> removeTodo(name, type)}
             >
                 <Trash2 size={18} />
             </button>

@@ -4,21 +4,17 @@ export type TodoItemType = {
   type: TodoEnum;
   name: string;
   tags?: Array<string>;
+  checked: boolean;
 };
 
 export type TodoItemType1 = {
   type: TodoEnum;
   name: string;
   tags?: Array<string>;
-  removeTodo: (name: string) => void
+  checked: boolean;
+  removeTodo: (name: string, type: TodoEnum) => void;
+  setChecked: (name: string, type: TodoEnum) => void;
 };
-
-// making an initial type for imported json data
-export type  Raw = {
-  type: string;
-  name: string;
-  tags?: Array<string>;
-}
 
 export type PopupElementProps = {
   showPopup: boolean;
@@ -29,7 +25,7 @@ export type PopupElementProps = {
   setTimeSpan: React.Dispatch<React.SetStateAction<TodoEnum>>;
   handleClick: () => void;
   timeSpanOption: TodoEnum[];
-  addTodo: (todoType: TodoEnum, name: string) => void;
+  addTodo: (todoType: TodoEnum, name: string, checked: boolean) => void;
 };
 
 export type PopupTodoNameProps = {
@@ -46,6 +42,6 @@ export type PopupTodoRadioProps = {
 export type PopupTodoFooterProps = {
   todoInput: string;
   timeSpan: TodoEnum;
-  addTodo: (todoType: TodoEnum, name: string) => void;
+  addTodo: (todoType: TodoEnum, name: string, checked: boolean) => void;
   handleClick: () => void;
 }

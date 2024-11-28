@@ -16,7 +16,7 @@ const PopupTodoFooter: React.FC<PopupTodoFooterProps> = ({
         size="sm"
         className="rounded-[8px] p-3"
         onClick={() => {
-          addTodo(timeSpan, todoInput);
+          addTodo(timeSpan, todoInput, false);
           handleClick();
         }}
       >

@@ -9,8 +9,9 @@ import { PopupElement } from "./PopupElement";
 type TodoDashBoardProps = {
   variant: TodoEnum;
   todos: Array<TodoItemType>;
-  addTodo: (todoType: TodoEnum, name: string) => void;
-  removeTodo: (name: string) => void
+  addTodo: (todoType: TodoEnum, name: string, checked: boolean) => void;
+  removeTodo: (name: string, type: TodoEnum) => void;
+  setChecked: (name: string, type: TodoEnum) => void;
 };
 
 export enum TodoEnum {
@@ -23,7 +24,8 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
   variant,
   todos,
   addTodo,
-  removeTodo
+  removeTodo,
+  setChecked
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [todoInput, setTodoInput] = useState("");
@@ -94,7 +96,9 @@ const TodoSection: React.FC<TodoDashBoardProps> = ({
               name={todo.name}
               type={todo.type}
               tags={todo.tags}
+              checked={todo.checked}
               removeTodo ={removeTodo}
+              setChecked ={setChecked}
             />
             
           ))
