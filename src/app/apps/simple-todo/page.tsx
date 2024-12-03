@@ -7,12 +7,15 @@ import { useCallback, useEffect, useState } from "react";
 import { TodoFooter } from "@/components/TodoFooter";
 
 //-----------------------------------------------------------------------------
+
+// Function to load data from localStorage if exist
+const loadTodosFromLocalStorage = (): Array<TodoItemType> => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? (JSON.parse(storedTodos) as Array<TodoItemType>) : [];
+};
+
 export default function TodoPage() {
-    const [todos, setTodos] = useState<Array<TodoItemType>>(() => {
-        // This is to load data from local storage
-        const storedTodos = localStorage.getItem("todos");
-        return storedTodos ? (JSON.parse(storedTodos) as Array<TodoItemType>) : [];
-    });
+    const [todos, setTodos] = useState(loadTodosFromLocalStorage);
 
     // Save todos to local storage whenever it changes
     useEffect(() => {
