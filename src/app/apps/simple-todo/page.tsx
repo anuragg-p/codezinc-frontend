@@ -5,13 +5,16 @@ import { TodoDashBoard, TodoEnum } from "@/components/Todo";
 import type { TodoItemType } from "@/types/todo.types";
 import { useCallback, useEffect, useState } from "react";
 import { TodoFooter } from "@/components/TodoFooter";
+import { LocalStorage } from "@/lib/LocalStorage";
+
+const storage = new LocalStorage();
 
 //-----------------------------------------------------------------------------
 
 // Function to load data from localStorage if exist
 const loadTodosFromLocalStorage = (): Array<TodoItemType> => {
-    const storedTodos = localStorage.getItem("todos");
-    return storedTodos ? (JSON.parse(storedTodos) as Array<TodoItemType>) : [];
+    const storedTodos = storage.get<Array<TodoItemType>>("todos");
+    return storedTodos ? storedTodos : [];
 };
 
 export default function TodoPage() {
@@ -19,7 +22,7 @@ export default function TodoPage() {
 
     // Save todos to local storage whenever it changes
     useEffect(() => {
-        localStorage.setItem("todos", JSON.stringify(todos));
+        storage.set("todos", todos);
     }, [todos]);
 
 //-----------------------------------------------------------------------------
