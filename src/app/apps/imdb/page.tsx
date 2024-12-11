@@ -45,6 +45,7 @@ export default function WeatherPage() {
 
   useEffect(() => {
     const tvShowsAndMovies = storage.get(STORAGE_KEY) || [];
+    //@ts-ignore
     setShows([...imdbMoviesAndTvShows, ...tvShowsAndMovies]);
   }, []);
 
@@ -109,6 +110,7 @@ export default function WeatherPage() {
                 { label: "Movie", value: "movie" },
               ]}
               value={showType}
+              //@ts-ignore
               onValueChange={(value: Show["type"]) => setShowType(value)}
             />
 
