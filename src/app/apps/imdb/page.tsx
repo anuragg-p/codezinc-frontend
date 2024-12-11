@@ -1,5 +1,4 @@
 "use client";
-
 import { ComboBox } from "@/components/ComboBox";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +33,6 @@ const imdbMoviesAndTvShows: Show[] = [
 ];
 
 export default function WeatherPage() {
-  const storage = new LocalStorage();
   const router = useRouter();
   const [addingShow, setAddingShow] = useState(false);
 
@@ -44,6 +42,8 @@ export default function WeatherPage() {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
+    if (!window) return;
+    const storage = new LocalStorage();
     const tvShowsAndMovies = storage.get(STORAGE_KEY) || [];
     //@ts-ignore
     setShows([...imdbMoviesAndTvShows, ...tvShowsAndMovies]);
@@ -51,6 +51,7 @@ export default function WeatherPage() {
 
   const addNewShow = () => {
     if (!window || !name || !imdbId) return;
+    const storage = new LocalStorage();
 
     const newShow: Show = { title: name, imdbId, type: showType };
     const updatedShows = [...shows, newShow];
@@ -64,6 +65,8 @@ export default function WeatherPage() {
   };
 
   const removeShow = (title: string) => {
+    if (!window) return;
+    const storage = new LocalStorage();
     const updatedShows = shows.filter((item) => item.title !== title);
     setShows(updatedShows);
     storage.set(STORAGE_KEY, updatedShows);
