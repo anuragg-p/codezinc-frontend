@@ -48,6 +48,12 @@ export default function HomePage() {
       route: "/apps/weather",
       content: "Content",
     },
+    {
+      title: "IMDB",
+      description: "imdb",
+      route: "/apps/imdb",
+      content: "Watch Imdb shows",
+    },
   ];
 
   return (
