@@ -5,6 +5,7 @@ export type TodoItemType = {
   name: string;
   tags?: Array<string>;
   checked: boolean;
+
 };
 
 export type TodoItemType1 = {

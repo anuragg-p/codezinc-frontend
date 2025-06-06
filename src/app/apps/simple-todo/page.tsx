@@ -73,21 +73,22 @@ export default function TodoPage() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col bg-gray-900 px-4">
-      <DashBoardHeader />
-      <section className="m-4 flex flex-grow flex-wrap gap-4 p-4">
-        {sections.map((item, index) => (
-          <TodoDashBoard
-            key={index}
-            variant={item.variant}
-            todos={item.todos}
-            addTodo={addTodo}
-            removeTodo={removeTodo}
-            setChecked={setChecked}
-          />
-        ))}
-      </section>
-      <TodoFooter />
-    </main>
+  <main className="flex min-h-screen w-full flex-col bg-black px-4">
+  <DashBoardHeader />
+  <section className="m-4 flex flex-grow flex-wrap gap-4 p-4">
+    {sections.map((item, index) => (
+      <TodoDashBoard
+        key={index}
+        variant={item.variant}
+        todos={item.todos}
+        addTodo={addTodo}
+        removeTodo={removeTodo}
+        setChecked={setChecked}
+      />
+    ))}
+  </section>
+  <TodoFooter />
+</main>
+
   );
 }

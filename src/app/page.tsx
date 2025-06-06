@@ -54,6 +54,12 @@ export default function HomePage() {
       route: "/apps/imdb",
       content: "Watch Imdb shows",
     },
+    {
+      title: "timer",
+      description: "timer app",
+      route: "/apps/timer",
+      content: "timer",
+    },
   ];
 
   return (
